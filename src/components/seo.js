@@ -1,7 +1,7 @@
 import { useRouter } from "next/dist/client/router";
 import { Helmet } from "react-helmet";
 
-const SEO = ({ title, description }) => {
+const Seo = ({ title, description }) => {
   const router = useRouter()
   const baseUrl = "http://localhost:3000"
   const currentUrl = baseUrl + router.pathname

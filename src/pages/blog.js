@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import Layout from '../components/layout'
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import * as style from "../styles/blog.module.scss"
 import { getAllBlogs } from "../styles/utils/mdQueries"
 
