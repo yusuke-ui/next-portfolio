@@ -1,5 +1,5 @@
 import matter from 'gray-matter'
-
+export const blogsPerPage = 5
 
 export default function getAllBlogs() {
   const blogs = ((context) => {
@@ -21,8 +21,11 @@ export default function getAllBlogs() {
     return b.frontmatter.id - a.frontmatter.id
   })
 
+  const numberPages = Math.ceil(orderedBlogs.length / blogsPerPage)
+
   return {
-    orderedBlogs: JSON.parse(JSON.stringify(orderedBlogs))
+    orderedBlogs: JSON.parse(JSON.stringify(orderedBlogs)),
+    numberPages: numberPages
   }
 }
 
