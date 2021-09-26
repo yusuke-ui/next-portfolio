@@ -1,5 +1,6 @@
 import matter from 'gray-matter'
 
+
 export default function getAllBlogs() {
   const blogs = ((context) => {
     const keys = context.keys()
@@ -15,7 +16,7 @@ export default function getAllBlogs() {
     })
     return data
   })(require.context('../data', true, /\.md$/))
-  
+
   const orderedBlogs = blogs.sort((a, b) => {
     return b.frontmatter.id - a.frontmatter.id
   })
