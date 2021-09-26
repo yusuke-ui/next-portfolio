@@ -2,10 +2,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Layout from '../components/layout'
 import Seo from "../components/seo"
+import Pagination from "../../../components/pagiantion"
 import * as style from "../styles/blog.module.scss"
 import { getAllBlogs, blogsPerPage } from "../../../utils/mdQueries"
 
-const Blog = (props) => {
+const PaginationPage = ({ blogs, numberPages }) => {
   return (
     <Layout>
       <Seo title="ブログ" description="これはブログページです" />
@@ -29,6 +30,7 @@ const Blog = (props) => {
             )}
           )}
         </div>
+        <Pagination numberPages={numberPages} />
       </div> 
     </Layout> 
   )
