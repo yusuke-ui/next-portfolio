@@ -4,8 +4,9 @@ import Layout from '../components/layout'
 import Seo from "../components/seo"
 import * as style from "../styles/blog.module.scss"
 import { getAllBlogs, blogsPerPage } from "../utils/mdQueries"
+import Pagination from '../components/pagination'
 
-const Blog = (props) => {
+const Blog = ({ blogs, numberPages }) => {
   return (
     <Layout>
       <Seo title="ブログ" description="これはブログページです" />
@@ -29,6 +30,7 @@ const Blog = (props) => {
             )}
           )}
         </div>
+        <Pagination numberPages={numberPages} />
       </div> 
     </Layout> 
   )
