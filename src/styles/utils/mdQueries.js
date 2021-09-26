@@ -1,7 +1,7 @@
 import matter from 'gray-matter'
 export const blogsPerPage = 5
 
-export default function getAllBlogs() {
+export async function getAllBlogs() {
   const blogs = ((context) => {
     const keys = context.keys()
     const values = keys.map(context)
