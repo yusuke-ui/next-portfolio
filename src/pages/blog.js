@@ -14,17 +14,18 @@ const Blog = ({ blogs, numberPages }) => {
         <div>
           <h1>Blog</h1>
           <p>エンジニアの日常生活をお届けします</p>
-          {props.blogs.map((blog, index) => {
+          {blogs.map((blog, index) => {
+            const { title, date, excerpt, image } = blog.frontmatter
             return (
-              <div key={index}>
-                <div>
-                  <h3>{blog.frontmatter.title}</h3>
-                  <p>{blog.frontmatter.excerpt}</p>
-                  <p>{blog.frontmatter.date}</p>
-                  <Link href={`../blog/${blog.slug}`}><a href={`../blog/${blog.slug}`}>Read More</a></Link> 
+              <div key={index} className={style.blogCard}>
+                <div className={style.textContainer}>
+                  <h3>{title}</h3>
+                  <p>{excerpt}</p>
+                  <p>{date}</p>
+                  <Link href={`../blog/${blog.slug}`}><a>Read More</a></Link> 
                 </div>
-                <div>
-                <Image src={blog.frontmatter.image} alt="card-image" height={300} width={1000} quality={90} />
+                <div className={style.cardImg}>
+                <Image src={image} alt="card-image" height={300} width={1000} quality={90} />
                 </div>
               </div>
             )}
