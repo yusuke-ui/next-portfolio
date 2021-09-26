@@ -2,10 +2,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import matter from "gray-matter"
 import Layout from '../components/layout'
+import Seo from "../components/seo"
+import * as style from "../styles/blog.moodule.scss"
 
 const Blog = (props) => {
   return (
     <Layout>
+      <Seo title="ブログ" description="これはブログページです" />
       <div>
         <div>
           <h1>Blog</h1>
