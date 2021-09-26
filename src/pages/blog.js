@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import matter from "gray-matter"
 import Layout from '../components/layout'
 import Seo from "../components/seo"
 import * as style from "../styles/blog.module.scss"
+import { getAllBlogs } from "../utils/mdQueries"
 
 const Blog = (props) => {
   return (
@@ -37,7 +37,7 @@ const Blog = (props) => {
 export default Blog;
 
 export async function getStaticProps() {
-  const blogs = ((context) => {
+  const { orderedBlogs } = await getAllBlogs((context) => {
     const keys = context.keys()
     const values = keys.map(context)
 
@@ -53,13 +53,11 @@ export async function getStaticProps() {
     return data
   })(require.context('../data', true, /\.md$/))
 
-  const orderedBlogs = blogs.sort((a, b) => {
-    return b.frontmatter.id - a.frontmatter.id
-  })
+  const { orderedBlogs } = await getAllBlogs()
 
   return {
     props: {
-      blogs: JSON.parse(JSON.stringify(orderedBlogs))
+      blogs: orderedBlogs
     },
   }
 }
