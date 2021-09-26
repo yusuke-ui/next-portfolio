@@ -53,7 +53,7 @@ export async function getStaticProps() {
     return data
   })(require.context('../data', true, /\.md$/))
 
-  const { orderedBlogs } = await getAllBlogs()
+  //const { orderedBlogs } = await getAllBlogs()
 
   return {
     props: {
