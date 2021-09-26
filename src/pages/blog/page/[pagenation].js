@@ -48,9 +48,11 @@ export default function getStaticPaths() {
   }
 }
 
-export async function getStaticProps() {
-  const { orderedBlogs } = await getAllBlogs((context) => {
-    const keys = context.keys()
+export async function getStaticProps(context) {
+  const { orderedBlogs, numberPages } = await getAllBlogs() 
+  const currentPage = context.params.pagination
+  const limitedBlogs = orderedBlogs.slice((currentPage - 1) * blogsPerPage, currentPage * blogsPerPage)
+    /*const keys = context.keys()
     const values = keys.map(context)
 
     const data = keys.map((key, index) => {
@@ -62,14 +64,14 @@ export async function getStaticProps() {
       slug: slug,
     }
     })
-    return data
-  })(require.context('../data', true, /\.md$/))
-
+    return data*/
+  
   //const { orderedBlogs } = await getAllBlogs()
 
   return {
     props: {
-      blogs: orderedBlogs
-    },
+      blogs: limitedBlogs,
+      numberPages: numberPages,
+    }
   }
 }
