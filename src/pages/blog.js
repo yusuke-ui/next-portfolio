@@ -3,7 +3,7 @@ import Image from 'next/image'
 import matter from "gray-matter"
 import Layout from '../components/layout'
 import Seo from "../components/seo"
-import * as style from "../styles/blog.moodule.scss"
+import * as style from "../styles/blog.module.scss"
 
 const Blog = (props) => {
   return (
