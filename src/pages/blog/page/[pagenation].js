@@ -36,6 +36,18 @@ const Blog = (props) => {
 
 export default Blog;
 
+export default function getStaticPaths() {
+  const { numberPages } = await getAllBlogs()
+
+  let paths = []
+  Array.from({ length: numberPages }).slice(0, 1).forEach((_, i) => paths.push(`/blog/page/${i + 2}`))
+
+  return {
+    paths: paths,
+    fallback: false,
+  }
+}
+
 export async function getStaticProps() {
   const { orderedBlogs } = await getAllBlogs((context) => {
     const keys = context.keys()
