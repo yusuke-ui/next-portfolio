@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Layout from '../components/layout'
 import Seo from "../components/seo"
 import * as style from "../styles/blog.module.scss"
-import { getAllBlogs } from "../utils/mdQueries"
+import { getAllBlogs, blogsPerPage } from "../utils/mdQueries"
 
 const Blog = (props) => {
   return (
@@ -37,8 +37,9 @@ const Blog = (props) => {
 export default Blog;
 
 export async function getStaticProps() {
-  const { orderedBlogs } = await getAllBlogs((context) => {
-    const keys = context.keys()
+  const { orderedBlogs, numberPages } = await getAllBlogs()
+  const limitedBlogs = orderedBlogs.slice(0, blogsPerPage)
+    /*const keys = context.keys()
     const values = keys.map(context)
 
     const data = keys.map((key, index) => {
@@ -51,13 +52,14 @@ export async function getStaticProps() {
     }
     })
     return data
-  })(require.context('../data', true, /\.md$/))
+  (require.context('../data', true, /\.md$/))*/
 
   //const { orderedBlogs } = await getAllBlogs()
 
   return {
     props: {
-      blogs: orderedBlogs
+      blogs: limitedBlogs,
+      numberPages: numberPages,
     },
   }
 }
